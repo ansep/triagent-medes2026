@@ -1,0 +1,13 @@
+{
+  "run_id": "b962d706",
+  "backbone": "qwen-local",
+  "provider": "llamacpp",
+  "ablation": "monolithic",
+  "started_at": "2026-10-31T18:53:20.253620+00:00",
+  "ended_at": "2026-10-31T18:56:40.023184+00:00",
+  "total_processed": 100,
+  "total_failed": 0,
+  "input_path": "/app/datasets/instances.jsonl",
+  "served_model_start": "/root/.cache/huggingface/hub/models--unsloth--Qwen3.6-27B-MTP-GGUF/snapshots/5cb35eb3dcbf52dbce5f87dbc64df6aaffadcace/Qwen3.6-27B-UD-Q4_K_XL.gguf",
+  "served_model_end": "/root/.cache/huggingface/hub/models--unsloth--Qwen3.6-27B-MTP-GGUF/snapshots/5cb35eb3dcbf52dbce5f87dbc64df6aaffadcace/Qwen3.6-27B-UD-Q4_K_XL.gguf"
+}

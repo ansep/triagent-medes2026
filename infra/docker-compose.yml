@@ -1,0 +1,60 @@
+services:
+
+  # llama.cpp server on a single 24 GB GPU. One model at a time: run_medes.sh restarts the
+  # server with the repository, alias and context size of each model and checks the loaded file.
+  llama-cpp-server:
+    image: ghcr.io/ggml-org/llama.cpp@sha256:1c4ff61ab157cdaee20dcae39860394384e5e9703c8848a33d2e40d68b6df0fa  # server-cuda, 9 June 2026
+    container_name: llama-cpp-server
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+    volumes:
+      - hf_cache:/root/.cache/huggingface
+    ports:
+      - "8080:8080"
+    command:
+      - -hf
+      - ${LCPP_MODEL_REPO:-unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL}
+      - -a
+      - ${LCPP_ALIAS:-qwen-local}
+      - -c
+      - "${LCPP_CTX_SIZE:-16384}"
+      - -ngl
+      - "99"
+      - -np
+      - "1"
+      - --timeout
+      - "1200"
+      - --cache-ram
+      - "0"
+      - --reasoning
+      - "off"
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    restart: unless-stopped
+
+  # TriAgent batch runner (CPU); invoked on demand by run_medes.sh
+  triagent-runner:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile
+    image: triagent-runner
+    env_file: ../backend/.env          # API keys; see backend/.env.example
+    environment:
+      - LLAMACPP_BASE_URL=http://llama-cpp-server:8080/v1
+    volumes:
+      - ../datasets:/app/datasets
+      - ../results:/app/results
+      - ../data:/app/data              # rule store
+
+volumes:
+  hf_cache:
