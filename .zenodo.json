@@ -1,0 +1,15 @@
+{
+  "title": "TriAgent: code, instances and runs for the MEDES 2026 paper",
+  "upload_type": "software",
+  "description": "Code, instances and all runs behind the MEDES 2026 paper \"TriAgent: A three-layer LLM-based agentic framework for web-based process automation\": the TriAgent implementation (Knowledge, Reasoning and Execution agents on LangGraph), the rule store, the production and tool-forcing datasets for five crop-disease processes, the scoring and analysis scripts, and the result files of every configuration (Gemma4-26B and Qwen3.6-27B over five seeds, DeepSeek-V3 single runs).",
+  "creators": [
+    {"name": "Grati, Rima", "affiliation": "Zayed University", "orcid": "0000-0002-6995-465X"},
+    {"name": "Sepielli, Andrea", "affiliation": "Sapienza Università di Roma", "orcid": "0009-0003-2247-6691"},
+    {"name": "Boukadi, Khouloud", "affiliation": "University of Sfax", "orcid": "0000-0002-6744-711X"},
+    {"name": "Arba, Elisabetta", "affiliation": "Sapienza Università di Roma", "orcid": "0009-0009-0882-0058"},
+    {"name": "Monti, Flavia", "affiliation": "Sapienza Università di Roma", "orcid": "0000-0003-3349-7861"},
+    {"name": "Mecella, Massimo", "affiliation": "Sapienza Università di Roma", "orcid": "0000-0002-9730-8882"}
+  ],
+  "license": "MIT",
+  "keywords": ["multi-agent systems", "LLM agents", "business process automation", "retrieval-augmented generation", "smart agriculture"]
+}
